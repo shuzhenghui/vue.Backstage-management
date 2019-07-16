@@ -316,8 +316,9 @@ export default {
   },
   methods: {
     handleChange(value) {
-      console.log(value);
-    }
+      // console.log(value);
+    },
+    handleClick() {}
   }
 };
 </script>

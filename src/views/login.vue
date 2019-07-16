@@ -52,7 +52,7 @@ export default {
       this.$refs[formName].validate(valid => {
         if (valid) {
           login(this.ruleForm).then(backData => {
-            console.log(backData);
+            // console.log(backData);
             if (backData.data.meta.status == 200) {
               this.$message.success(backData.data.meta.msg);
               window.sessionStorage.setItem("token", backData.data.data.token);

@@ -11,6 +11,7 @@ import params from '../views/params.vue'
 import categories from '../views/categories.vue'
 import orders from '../views/orders.vue'
 import reports from '../views/reports.vue'
+import errorpage from '../views/errorpage.vue'
 
 //导入路由
 import VueRouter from 'vue-router'
@@ -36,7 +37,9 @@ const router = new VueRouter({
                 { path: 'orders', component: orders },
                 { path: 'reports', component: reports },
             ]
-        }
+        },
+        { path: '*', redirect: '/errorpage' },
+        { path: '/errorpage', component: errorpage }
     ]
 })
 

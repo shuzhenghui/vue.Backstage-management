@@ -2,7 +2,7 @@
 
 ## Project setup
 ```
-npm install
+npm create management
 ```
 
 ### Compiles and hot-reloads for development

@@ -14,18 +14,14 @@
       </el-row>
     </el-header>
     <el-container>
-      <el-aside class="left">
+      <el-aside class="left" style="width: 200px;">
         <el-menu default-active="2" class="el-menu-vertical-demo" unique-opened router>
           <el-submenu v-for="(item,index) in manageList" :key="index" :index="''+index">
             <template slot="title">
               <i class="el-icon-location"></i>
               <span>{{item.authName}}</span>
             </template>
-            <el-menu-item
-              v-for="(it,idx) in item.children"
-              :key="idx"
-              :index="'/index/' + it.path"
-            >
+            <el-menu-item v-for="(it,idx) in item.children" :key="idx" :index="'/index/' + it.path">
               <i class="el-icon-menu"></i>
               {{it.authName}}
             </el-menu-item>
@@ -110,10 +106,6 @@ export default {
       text-decoration: none;
       color: white;
     }
-  }
-
-  .left {
-    width: 200px;
   }
 
   .main {

@@ -2,7 +2,7 @@
 
 ## Project setup
 ```
-npm创建管理
+npm create management
 ```
 
 ### Compiles and hot-reloads for development

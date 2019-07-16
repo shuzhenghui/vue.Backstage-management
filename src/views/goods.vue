@@ -1,6 +1,6 @@
 <template>
   <div>
-    <myBread level1="用户管理" level2="用户列表"></myBread>
+    <myBread level1="商品管理" level2="商品列表"></myBread>
     <el-row class="search" :gutter="5">
       <el-col :span="6">
         <el-input placeholder="请输入内容" v-model="input3" class="input-with-select">
@@ -16,14 +16,8 @@
       <el-table-column prop="username" label="姓名" width="160"></el-table-column>
       <el-table-column prop="email" label="邮箱" width="300"></el-table-column>
       <el-table-column prop="mobile" label="电话" width="300"></el-table-column>
-      <el-table-column prop="mg_state" label="用户状态" width="80">
-        <el-switch v-model="value" active-color="#13ce66" inactive-color="#ff4949"></el-switch>
-      </el-table-column>
-      <el-table-column prop="option" label="操作" width="200">
-        <el-button type="primary" icon="el-icon-edit" plain size="small"></el-button>
-        <el-button type="warning" icon="el-icon-delete" plain size="small"></el-button>
-        <el-button type="danger" icon="el-icon-check" plain size="small"></el-button>
-      </el-table-column>
+      <el-table-column prop="mg_state" label="用户状态" width="80"></el-table-column>
+      <el-table-column prop="option" label="操作" width="200"></el-table-column>
     </el-table>
     <!-- 分页 -->
     <el-pagination
@@ -44,7 +38,6 @@ export default {
   name: "users",
   data() {
     return {
-      value: true,
       // 用户列表
       managerList: [],
       // 分页

@@ -1,14 +1,15 @@
 <template>
   <el-breadcrumb separator-class="el-icon-arrow-right" class="myBread">
     <el-breadcrumb-item :to="{ path: '/index' }">首页</el-breadcrumb-item>
-    <el-breadcrumb-item>用户管理</el-breadcrumb-item>
-    <el-breadcrumb-item>用户列表</el-breadcrumb-item>
+    <el-breadcrumb-item>{{level1}}</el-breadcrumb-item>
+    <el-breadcrumb-item>{{level2}}</el-breadcrumb-item>
   </el-breadcrumb>
 </template>
 
 <script>
 export default {
-  name: "myBread"
+  name: "myBread",
+  props: ['level1','level2']
 };
 </script>
 

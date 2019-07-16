@@ -36,7 +36,6 @@
 </template>
 
 <script>
-import { users } from "../api/http";
 import { manageList } from "../api/http";
 export default {
   name: "index",
@@ -54,13 +53,6 @@ export default {
     // }
   },
   created() {
-    // users({ pagenum: 1, pagesize: 5 }).then(backData => {
-    //   console.log(backData);
-    //   if (backData.data.meta.status == 200) {
-    //     this.manageList = backData.data.data.role_name;
-    //   }
-    // });
-
     //获取左侧管理列表
     manageList().then(backData => {
       // console.log(backData);

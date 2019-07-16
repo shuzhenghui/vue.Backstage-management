@@ -4,6 +4,13 @@ import Vue from 'vue'
 import login from '../views/login.vue'
 import index from '../views/index.vue'
 import users from '../views/users.vue'
+import roles from '../views/roles.vue'
+import rights from '../views/rights.vue'
+import goods from '../views/goods.vue'
+import params from '../views/params.vue'
+import categories from '../views/categories.vue'
+import orders from '../views/orders.vue'
+import reports from '../views/reports.vue'
 
 //导入路由
 import VueRouter from 'vue-router'
@@ -20,7 +27,14 @@ const router = new VueRouter({
         {
             path: '/index', component: index,
             children: [
-                { path: 'users', component: users }//路径path不能反斜杠
+                { path: 'users', component: users },//路径path不能反斜杠
+                { path: 'roles', component: roles },
+                { path: 'rights', component: rights },
+                { path: 'goods', component: goods },
+                { path: 'params', component: params },
+                { path: 'categories', component: categories },
+                { path: 'orders', component: orders },
+                { path: 'reports', component: reports },
             ]
         }
     ]

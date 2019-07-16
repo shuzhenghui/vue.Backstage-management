@@ -33,3 +33,19 @@ export const manageList = () => {
         }
     })
 }
+
+export const roles = () => {
+    return manager.get('/roles', {
+        headers: {
+            Authorization: window.sessionStorage.getItem('token')
+        }
+    })
+}
+
+export const params = () => {
+    return manager.get('/params', {
+        headers: {
+            Authorization: window.sessionStorage.getItem('token')
+        }
+    })
+}

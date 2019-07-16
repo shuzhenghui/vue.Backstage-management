@@ -1,12 +1,7 @@
 <template>
   <div>
-    <myBread level1="用户管理" level2="用户列表"></myBread>
+    <myBread level1="订单管理" level2="订单列表"></myBread>
     <el-row class="search" :gutter="5">
-      <el-col :span="6">
-        <el-input placeholder="请输入内容" v-model="input3" class="input-with-select">
-          <el-button slot="append" icon="el-icon-search"></el-button>
-        </el-input>
-      </el-col>
       <el-col :span="2">
         <el-button type="success" plain size>添加用户</el-button>
       </el-col>

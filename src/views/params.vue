@@ -19,15 +19,44 @@
     <el-tabs v-model="activeName" @tab-click="handleClick" class="myTable">
       <el-tab-pane label="动态参数" name="first">
         <el-button type="primary" disabled size="small" class="myBtn">添加动态参数</el-button>
-        <el-table :data="tableData" border style="width: 100%">
+        <el-table :data="tableData" style="width: 100%">
+          <el-table-column type="expand">
+            <template slot-scope="scope">
+              <el-tag
+                style="margin-right: 10px;"
+                :key="tag"
+                v-for="tag in scope.row.tags"
+                closable
+                :disable-transitions="false"
+                @close="handleClose(tag)"
+              >{{tag}}</el-tag>
+              <el-input
+                class="input-new-tag"
+                v-if="scope.row.inputVisible"
+                v-model="scope.row.inputValue"
+                ref="saveTagInput"
+                size="small"
+                @keyup.enter.native="handleInputConfirm(scope.row)"
+                @blur="handleInputConfirm"
+              ></el-input>
+              <el-button
+                v-else
+                class="button-new-tag"
+                size="small"
+                @click="showInput(scope.row)"
+              >+ New Tag</el-button>
+            </template>
+          </el-table-column>
+          <el-table-column type="index" width="50"></el-table-column>
           <el-table-column prop="date" label="日期" width="180"></el-table-column>
           <el-table-column prop="name" label="姓名" width="180"></el-table-column>
           <el-table-column prop="address" label="地址"></el-table-column>
         </el-table>
       </el-tab-pane>
+
       <el-tab-pane label="静态参数" name="second">
         <el-button type="primary" disabled size="small" class="myBtn">添加静态参数</el-button>
-        <el-table :data="tableData" border style="width: 100%">
+        <el-table :data="tableData" style="width: 100%">
           <el-table-column prop="date" label="日期" width="180"></el-table-column>
           <el-table-column prop="name" label="姓名" width="180"></el-table-column>
           <el-table-column prop="address" label="地址"></el-table-column>
@@ -311,14 +340,70 @@ export default {
             }
           ]
         }
-      ]
+      ],
+      tableData: [
+        {
+          date: "2016-05-02",
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1518 弄",
+          tags: ["雪白", "180cm", "90kg"],
+          inputValue: "",
+          inputVisible: false
+        },
+        {
+          date: "2016-05-04",
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1517 弄",
+          tags: ["雪白", "180cm", "90kg"],
+          inputValue: "",
+          inputVisible: false
+        },
+        {
+          date: "2016-05-01",
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1519 弄",
+          tags: ["雪白", "180cm", "90kg"],
+          inputValue: "",
+          inputVisible: false
+        },
+        {
+          date: "2016-05-03",
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1516 弄",
+          tags: ["雪白", "180cm", "90kg"],
+          inputValue: "",
+          inputVisible: false
+        }
+      ],
+      //标记展开和收起字段
+      inputVisible: false,
+      inputValue: ""
     };
   },
   methods: {
     handleChange(value) {
       // console.log(value);
     },
-    handleClick() {}
+    handleClick() {},
+    handleClose(tag) {
+      this.dynamicTags.splice(this.dynamicTags.indexOf(tag), 1);
+    },
+
+    showInput(row) {
+      row.inputVisible = true;
+      this.$nextTick(_ => {
+        this.$refs.saveTagInput.$refs.input.focus();
+      });
+    },
+
+    handleInputConfirm(row) {
+      let inputValue = row.inputValue;
+      if (inputValue) {
+        row.tags.push(inputValue);
+      }
+      row.inputVisible = false;
+      this.inputValue = "";
+    }
   }
 };
 </script>
@@ -334,5 +419,21 @@ export default {
 
 .myTable {
   margin-top: 20px;
+}
+
+.el-tag + .el-tag {
+  margin-left: 10px;
+}
+.button-new-tag {
+  margin-left: 10px;
+  height: 32px;
+  line-height: 30px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.input-new-tag {
+  width: 90px;
+  margin-left: 10px;
+  vertical-align: bottom;
 }
 </style>

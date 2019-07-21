@@ -6,7 +6,9 @@ import index from '../views/index.vue'
 import users from '../views/users.vue'
 import roles from '../views/roles.vue'
 import rights from '../views/rights.vue'
-import goods from '../views/goods.vue'
+import goods from '../views/goods/goods.vue'
+import goodsIndex from '../views/goods/components/goodsIndex.vue'
+import goodsAdd from '../views/goods/components/goodsAdd.vue'
 import params from '../views/params.vue'
 import categories from '../views/categories.vue'
 import orders from '../views/orders.vue'
@@ -31,7 +33,13 @@ const router = new VueRouter({
                 { path: 'users', component: users },//路径path不能反斜杠
                 { path: 'roles', component: roles },
                 { path: 'rights', component: rights },
-                { path: 'goods', component: goods },
+                {
+                    path: 'goods', component: goods,
+                    children: [
+                        { path: '', component: goodsIndex },
+                        { path: 'goodsAdd', component: goodsAdd }
+                    ]
+                },
                 { path: 'params', component: params },
                 { path: 'categories', component: categories },
                 { path: 'orders', component: orders },

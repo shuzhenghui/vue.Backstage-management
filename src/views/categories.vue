@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { users } from "../api/http";
+import { getCategories } from "../api/http";
 export default {
   name: "users",
   data() {
@@ -59,16 +59,10 @@ export default {
     }
   },
   created() {
-    //   获取用户列表
-    users({ pagenum: this.currentPage, pagesize: this.pageSize }).then(
-      backData => {
-        console.log(backData);
-        if (backData.data.meta.status == 200) {
-          this.tableData = backData.data.data.users;
-          this.totalCount = backData.data.data.total;
-        }
-      }
-    );
+    //   获取商品列表
+    getCategories().then(backData => {
+      console.log(backData);
+    });
   }
 };
 </script>

@@ -323,7 +323,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .myAlert {
   margin: 20px 0;
 }

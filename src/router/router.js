@@ -43,6 +43,7 @@ const router = new VueRouter({
     ]
 })
 
+// 路由的导航守卫
 router.beforeEach((to, from, next) => {
     if (to.meta.needLogin != false) {//等于false表示当前不在登陆页面,就需要判断一下是否需要登陆
         if (window.sessionStorage.getItem('token') != undefined) {//不等于undefined表示token有值,那就意味着是已登陆状态

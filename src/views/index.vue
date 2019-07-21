@@ -6,7 +6,7 @@
           <img src="../assets/logo.png" alt="logo" style="height: 60px;" />
         </el-col>
         <el-col :span="20">
-          <h2>蝙蝠侠后台管理系统</h2>
+          <h2>虹猫后台管理系统</h2>
         </el-col>
         <el-col :span="1">
           <a href="#" class="logout" @click.prevent="logout">退出</a>

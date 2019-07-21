@@ -12,10 +12,20 @@
         label-position="top"
       >
         <el-form-item label="用户名" prop="username">
-          <el-input type="text" v-model.trim="ruleForm.username" autocomplete="off"></el-input>
+          <el-input
+            type="text"
+            v-model.trim="ruleForm.username"
+            @keyup.enter.native="submitForm('ruleForm')"
+            autocomplete="off"
+          ></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password">
-          <el-input type="password" v-model.trim="ruleForm.password" autocomplete="off"></el-input>
+          <el-input
+            type="password"
+            @keyup.enter.native="submitForm('ruleForm')"
+            v-model.trim="ruleForm.password"
+            autocomplete="off"
+          ></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="submitForm('ruleForm')" style="width:100%;">登录</el-button>

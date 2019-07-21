@@ -13,7 +13,13 @@ Vue.use(ElementUI);
 // Vue.prototype.$axios = axios
 
 import myBread from './components/myBread.vue'
-Vue.component('myBread',myBread)
+Vue.component('myBread', myBread)
+
+import moment from 'moment'
+Vue.filter('formatTime', (value, dateType) => {
+  return moment(value).format(dateType);
+  // return Val
+})
 
 //导入路由模块
 import router from './router/router'

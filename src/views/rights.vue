@@ -3,42 +3,43 @@
     <myBread level1="权限管理" level2="权限列表"></myBread>
     <!-- 表格 -->
     <el-table :data="tableData" border style="width: 100%">
-      <el-table-column prop="number" label="#" width="40"></el-table-column>
-      <el-table-column prop="date" label="姓名" width="200"></el-table-column>
-      <el-table-column prop="name" label="邮箱" width="200"></el-table-column>
-      <el-table-column prop="address" label="电话" width="200"></el-table-column>
+      <el-table-column prop="index" label="#" width="40"></el-table-column>
+      <el-table-column prop="authName" label="权限名称" width="200"></el-table-column>
+      <el-table-column prop="path" label="路径" width="200"></el-table-column>
+      <el-table-column prop="level" label="层级" width="200"></el-table-column>
     </el-table>
   </div>
 </template>
 
 <script>
+import { rightlist } from "../api/http";
 export default {
   name: "rights",
   data() {
     return {
-      tableData: [
-        {
-          date: "2016-05-02",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄"
-        },
-        {
-          date: "2016-05-04",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1517 弄"
-        },
-        {
-          date: "2016-05-01",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1519 弄"
-        },
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1516 弄"
-        }
-      ]
+      tableData: []
     };
+  },
+  created() {
+    rightlist().then(backData => {
+      // console.log(backData);
+      for (let i = 0; i < backData.data.data.length; i++) {
+        switch (backData.data.data[i].level) {
+          case '0':
+            backData.data.data[i].level = '一级'
+            break;
+          case '1':
+            backData.data.data[i].level = '二级'
+            break;
+          case '2':
+            backData.data.data[i].level = '三级'
+            break;
+        }
+      }
+      if (backData.data.meta.status == 200) {
+        this.tableData = backData.data.data;
+      }
+    });
   }
 };
 </script>

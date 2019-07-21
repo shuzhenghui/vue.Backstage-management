@@ -7,17 +7,20 @@
       </el-col>
     </el-row>
     <!-- 表格 -->
-    <el-table :data="tableData" border style="width: 100%">
-      <el-table-column prop="username" label="姓名" width="160"></el-table-column>
-      <el-table-column prop="email" label="邮箱" width="300"></el-table-column>
-      <el-table-column prop="mobile" label="电话" width="300"></el-table-column>
-      <el-table-column prop="mg_state" label="用户状态" width="80">
+    <el-table :data="tableData" row-key="cat_id" border style="width: 100%">
+      <el-table-column prop="cat_name" label="分类名称" width="200"></el-table-column>
+      <el-table-column prop="cat_level" label="级别" width="100">
+        <template slot-scope="scope">{{scope.row.cat_level | formatLevel}}</template>
+      </el-table-column>
+      <el-table-column prop="cat_delete" label="是否有效" width="100">
+        <template slot-scope="scope">{{scope.row.cat_level | formateffc}}</template>
+      </el-table-column>
+      <el-table-column label="操作" width="80">
         <el-switch v-model="value" active-color="#13ce66" inactive-color="#ff4949"></el-switch>
       </el-table-column>
       <el-table-column prop="option" label="操作" width="200">
         <el-button type="primary" icon="el-icon-edit" plain size="small"></el-button>
         <el-button type="warning" icon="el-icon-delete" plain size="small"></el-button>
-        <el-button type="danger" icon="el-icon-check" plain size="small"></el-button>
       </el-table-column>
     </el-table>
     <!-- 分页 -->
@@ -50,6 +53,27 @@ export default {
       tableData: []
     };
   },
+  filters: {
+    formatLevel(val) {
+      switch (val) {
+        case 0:
+          return "一级";
+          break;
+        case 1:
+          return "二级";
+          break;
+        case 2:
+          return "三级";
+          break;
+
+        default:
+          break;
+      }
+    },
+    formateffc(val) {
+      return val ? "无效" : "有效";
+    }
+  },
   methods: {
     handleCurrentChange(val) {
       this.currentPage = val;
@@ -62,6 +86,9 @@ export default {
     //   获取商品列表
     getCategories().then(backData => {
       console.log(backData);
+      if (backData.data.meta.status == 200) {
+        this.tableData = backData.data.data;
+      }
     });
   }
 };

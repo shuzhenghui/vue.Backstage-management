@@ -152,6 +152,15 @@ export const getGoods = ({ query, pagenum, pagesize }) => {
     })
 }
 
+//获取商品分类
+export const getCategories = () => {
+    return manager.get('/categories', {
+        params: {
+            type: 3
+        }
+    })
+}
+
 
 
 //根据id查询用户信息接口

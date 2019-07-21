@@ -161,6 +161,33 @@ export const getCategories = () => {
     })
 }
 
+//获取订单分类
+export const getorders = ({ query,
+    pagenum,
+    pagesize,
+    user_id,
+    pay_status,
+    is_send,
+    order_fapiao_title,
+    order_fapiao_company,
+    order_fapiao_content,
+    consignee_addr }) => {
+    return manager.get('/orders', {
+        params: {
+            query,
+            pagenum,
+            pagesize,
+            user_id,
+            pay_status,
+            is_send,
+            order_fapiao_title,
+            order_fapiao_company,
+            order_fapiao_content,
+            consignee_addr
+        }
+    })
+}
+
 
 
 //根据id查询用户信息接口

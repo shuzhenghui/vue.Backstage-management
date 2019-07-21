@@ -80,6 +80,6 @@ export default {
 }
 
 .ql-editor {
-  height: 400px;
+  height: 443px;
 }
 </style>

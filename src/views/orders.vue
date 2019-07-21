@@ -8,16 +8,17 @@
     </el-row>
     <!-- 表格 -->
     <el-table :data="tableData" border style="width: 100%">
-      <el-table-column prop="username" label="姓名" width="160"></el-table-column>
-      <el-table-column prop="email" label="邮箱" width="300"></el-table-column>
-      <el-table-column prop="mobile" label="电话" width="300"></el-table-column>
-      <el-table-column prop="mg_state" label="用户状态" width="80">
+      <el-table-column type="index" width="50"></el-table-column>
+      <el-table-column prop="order_number" label="订单编号" width="300"></el-table-column>
+      <el-table-column prop="order_price" label="订单价格" width="100"></el-table-column>
+      <el-table-column prop="order_pay" label="是否付款" width="80"></el-table-column>
+      <el-table-column prop="is_send" label="是否发货" width="80"></el-table-column>
+      <el-table-column prop="create_time" label="下单时间" width="200"></el-table-column>
+      <el-table-column label="操作" width="80">
         <el-switch v-model="value" active-color="#13ce66" inactive-color="#ff4949"></el-switch>
       </el-table-column>
       <el-table-column prop="option" label="操作" width="200">
         <el-button type="primary" icon="el-icon-edit" plain size="small"></el-button>
-        <el-button type="warning" icon="el-icon-delete" plain size="small"></el-button>
-        <el-button type="danger" icon="el-icon-check" plain size="small"></el-button>
       </el-table-column>
     </el-table>
     <!-- 分页 -->
@@ -34,7 +35,7 @@
 </template>
 
 <script>
-import { users } from "../api/http";
+import { getorders } from "../api/http";
 export default {
   name: "users",
   data() {
@@ -44,7 +45,7 @@ export default {
       managerList: [],
       // 分页
       currentPage: 1,
-      pageSize: 5,
+      pageSize: 9,
       totalCount: 5,
       input3: "",
       tableData: []
@@ -56,19 +57,22 @@ export default {
     },
     handleSizeChange(val) {
       this.pageSize = val;
+    },
+    //   获取用户列表
+    getData() {
+      getorders({ pagenum: this.currentPage, pagesize: this.pageSize }).then(
+        backData => {
+          console.log(backData);
+          if (backData.data.meta.status == 200) {
+            this.tableData = backData.data.data.goods;
+            this.totalCount = backData.data.data.total;
+          }
+        }
+      );
     }
   },
   created() {
-    //   获取用户列表
-    users({ pagenum: this.currentPage, pagesize: this.pageSize }).then(
-      backData => {
-        console.log(backData);
-        if (backData.data.meta.status == 200) {
-          this.tableData = backData.data.data.users;
-          this.totalCount = backData.data.data.total;
-        }
-      }
-    );
+    this.getData();
   }
 };
 </script>

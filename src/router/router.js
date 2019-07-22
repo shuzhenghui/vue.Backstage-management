@@ -1,19 +1,19 @@
 import Vue from 'vue'
 
 //导入组件
-import login from '../views/login.vue'
-import index from '../views/index.vue'
-import users from '../views/users.vue'
-import roles from '../views/roles.vue'
-import rights from '../views/rights.vue'
-import goods from '../views/goods/goods.vue'
-import goodsIndex from '../views/goods/components/goodsIndex.vue'
-import goodsAdd from '../views/goods/components/goodsAdd.vue'
-import params from '../views/params.vue'
-import categories from '../views/categories.vue'
-import orders from '../views/orders.vue'
-import reports from '../views/reports.vue'
-import errorpage from '../views/errorpage.vue'
+const login = () => import('../views/login.vue')
+const index = () => import('../views/index.vue')
+const users = () => import('../views/users.vue')
+const roles = () => import('../views/roles.vue')
+const rights = () => import('../views/rights.vue')
+const goods = () => import('../views/goods/goods.vue')
+const goodsIndex = () => import('../views/goods/components/goodsIndex.vue')
+const goodsAdd = () => import('../views/goods/components/goodsAdd.vue')
+const params = () => import('../views/params.vue')
+const categories = () => import('../views/categories.vue')
+const orders = () => import('../views/orders.vue')
+const reports = () => import('../views/reports.vue')
+const errorpage = () => import('../views/errorpage.vue')
 
 //导入路由
 import VueRouter from 'vue-router'

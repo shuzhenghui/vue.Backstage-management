@@ -188,6 +188,11 @@ export const getorders = ({ query,
     })
 }
 
+//获取数据报表
+export const reports = () =>{
+    return manager.get('/reports/type/1')
+}
+
 
 
 //根据id查询用户信息接口

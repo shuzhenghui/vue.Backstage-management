@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import { reports } from "../api/http";
 import echarts from "echarts";
 export default {
   name: "reports",
@@ -98,20 +99,36 @@ export default {
       }
     };
   },
-  mounted() {
-    const myChart = echarts.init(this.$refs.reports);
+  methods: {
+    getData() {
+      reports().then(backData => {
+        console.log(backData);
+        if (backData.data.meta.status == 200) {
+          for (const key in backData.data.data) {
+            this.option[key] = backData.data.data[key];
+            this.$nextTick(() => {
+              const myChart = echarts.init(this.$refs.reports);
 
-    // 使用刚指定的配置项和数据显示图表。
-    myChart.setOption(this.option);
+              // 使用刚指定的配置项和数据显示图表。
+              myChart.setOption(this.option);
+            });
+          }
+        }
+      });
+    }
+  },
+  mounted() {},
+  created() {
+    this.getData();
   }
 };
 </script>
 
 <style>
 .box {
-    width: 100%;
-    height: 100%;
-    background: white;
-    padding: 20px;
+  width: 100%;
+  height: 100%;
+  background: white;
+  padding: 20px;
 }
 </style>
